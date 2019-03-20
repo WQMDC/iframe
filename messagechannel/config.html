@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Config</title>
+  </head>
+  <body>
+    <p id="config">Config</p>
+  </body>
+  <script>
+    const channel = new MessageChannel();
+    window.parent.frames[0].postMessage('hello', 'http://localhost:4233', [channel.port2])
+
+    channel.port1.onmessage = (event) => {
+        const config = document.getElementById('config');
+        config.innerText = event.data;
+    }
+  </script>
+</html>

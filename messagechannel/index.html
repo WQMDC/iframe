@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Main Page</title>
+  </head>
+  <body>
+    <h1>This is Parent Page</h1>
+    <iframe
+      id="widget"
+      src="http://localhost:4233/widget.html"
+      frameborder="1"
+      width="300px"
+      height="300px"
+    ></iframe>
+    <iframe
+      id="config"
+      src="http://localhost:4233/config.html"
+      frameborder="1"
+      width="300px"
+      height="300px"
+    ></iframe>
+    <p id="message">message</p>
+  </body>
+  <!-- <script>
+      const channel = new MessageChannel();
+      const widget = document.getElementById('widget');
+      widget.addEventListener('load', () => {
+          channel.port1.onmessage = onMessage;
+
+          widget.contentWindow.postMessage("It's come from Main Page", 'http://localhost:4233', [channel.port2]);
+      })
+
+      function onMessage(e) {
+          const message = document.getElementById('message');
+          message.innerText = e.data;
+      }
+  </script> -->
+</html>
