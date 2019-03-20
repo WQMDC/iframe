@@ -1,6 +1,4 @@
-## This is iframe communication
-
-about PostMessage and MessageChannel
+## This is iframe communication - About PostMessage and MessageChannel
 
 PostMessage vs MessageChannel
 
