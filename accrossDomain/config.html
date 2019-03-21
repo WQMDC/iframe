@@ -7,7 +7,7 @@
     <title>Config</title>
 </head>
 <body>
-    <p>Config</p>
+    <p id="config">Config</p>
 </body>
 <!-- <script>
     window.addEventListener('message', function({data, origin, source}) {
@@ -22,4 +22,10 @@
         parent.postMessage('config got it', origin);
     }
 </script> -->
+<script>
+    window.addEventListener('message', ({data, origin, source}) => {
+        const config = document.getElementById('config');
+        config.innerText = config;
+    })
+</script>
 </html>
