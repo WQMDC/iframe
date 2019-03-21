@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parent1</title>
+</head>
+<body>
+    <h1>Parent1</h1>
+    <p>This is Parent1</p>
+    <p id="message">message</p>
+    <iframe src="./child.html" frameborder="1" width="300px" height="300px"></iframe>
+</body>
+<script>
+    window.addEventListener('message', function({data}) {
+        const message = document.getElementById('message');
+        message.innerText = data;
+    })
+</script>
+</html>
