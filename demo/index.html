@@ -8,15 +8,14 @@
 </head>
 <body>
     <h1>This is Parent Page</h1>
-    <iframe src="content.html" frameborder="1" width="1200px" height="500px"></iframe>
+    <iframe src="http://localhost:4233/content.html" frameborder="1" width="1200px" height="500px"></iframe>
     <button onclick="btnClick()">click me</button>
 </body>
 <script>
     window.onload = function() {
         const child = window.frames[0];
-        child.postMessage('come from parent', 'http://127.0.0.1:5500');
+        child.postMessage('come from parent', 'http://localhost:4233');
         console.log(child, 'child');
-
         // sendMessage();
     }
 
@@ -29,14 +28,14 @@
         let i = 0;
         setInterval(() => {
             const child = window.frames[0];
-            child.postMessage(`this is ${i + 1} message`, 'http://127.0.0.1:5500');
+            child.postMessage(`this is ${i + 1} message`, 'http://localhost:4233');
             i ++ ;
         }, 5000);
     }
 
     function btnClick() {
         const child = window.frames[0];
-        child.postMessage('btn click', 'http://127.0.0.1:5500/content');
+        child.postMessage('btn click', 'http://localhost:4233');
     }
 </script>
 </html>
