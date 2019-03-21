@@ -15,6 +15,7 @@
     window.parent.frames[0].postMessage('hello', 'http://localhost:4233', [channel.port2])
 
     channel.port1.onmessage = (event) => {
+      console.log(event);
         const config = document.getElementById('config');
         config.innerText = event.data;
     }

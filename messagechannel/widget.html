@@ -9,13 +9,25 @@
   <body>
     <h2>Widget</h2>
     <p id="widget">Widget</p>
+    <button onclick="sendMessage()">send message to Config</button>
   </body>
   <script>
+    let ports = null;
       window.addEventListener('message', (event) => {
         const widget = document.getElementById('widget');
         widget.innerText = event.data;
 
+        ports = event.ports[0];
+
         event.ports[0].postMessage('Message from widget');
       })
+
+      function sendMessage() {
+        if (ports) {
+          ports.postMessage('Message come from widget button');
+        }else {
+          alert('Please set ports');
+        }
+      }
   </script>
 </html>
