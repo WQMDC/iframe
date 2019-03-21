@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Widget</title>
+</head>
+<body>
+    <p>Widget</p>
+</body>
+<!-- <script>
+    window.addEventListener('message', function({data, origin, source}) {
+        const p = document.querySelector('p');
+        p.innerText = data;
+        
+        feedBack(origin, source);
+    }, false)
+
+    function feedBack(origin, source){
+        const parent = source.parent;
+        parent.postMessage('widget got it', origin);
+    }
+</script> -->
+<script>
+    window.onload = function() {
+        const parent = window.parent;
+        const domain = window.location.ancestorOrigins[0];
+
+        parent.postMessage({message: 'I need send some message to config', target: 'config', type: 'send', words: 'this message come from widget'}, domain);
+    }
+</script>
+</html>

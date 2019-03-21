@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main Page</title>
+</head>
+<body>
+    <h1>This is Parent Page</h1>
+    <iframe src="content.html" frameborder="1" width="1200px" height="500px"></iframe>
+    <button onclick="btnClick()">click me</button>
+</body>
+<script>
+    window.onload = function() {
+        const child = window.frames[0];
+        // child.postMessage('come from parent', 'http://localhost:5500/content');
+        console.log(child, 'child');
+
+        // sendMessage();
+    }
+
+    window.addEventListener('message', function(e) {
+        console.log(e.data);
+        sendMessage();
+    }, false)
+
+    function sendMessage() {
+        let i = 0;
+        setInterval(() => {
+            const child = window.frames[0];
+            child.postMessage(`this is ${i + 1} message`, 'http://localhost:5500/');
+            i ++ ;
+        }, 5000);
+    }
+
+    function btnClick() {
+        const child = window.frames[0];
+        child.postMessage('btn click', 'http://localhost:5500/content');
+    }
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parent Page</title>
+</head>
+<body>
+    <h1>This Is Parent Page</h1>
+    <iframe id="widget" src="http://localhost:4233/widget.html" frameborder="1" width="300px;" height="300px"></iframe>
+    <iframe id="config" src="http://localhost:4233/config.html" frameborder="1" width="300px;" height="300px"></iframe>
+
+    <p id="message">message</p>
+</body>
+<!-- <script>
+    window.onload = function() {
+        const widget = document.getElementById('widget');
+        const config = document.getElementById('config');
+
+        config.contentWindow.postMessage('this is parent message', 'http://localhost:4233');
+        widget.contentWindow.postMessage('this is parent message', 'http://localhost:4233');
+    }
+
+    window.addEventListener('message', function({data, origin, source}) {
+        console.log(data);
+        const message = document.querySelector('#message');
+        message.innerText = data;
+    })
+</script> -->
+
+<script>
+    window.addEventListener('message', ({data, origin, source}) => {
+        const { type, target, message, words } = data;
+        console.log(data);
+
+        const msg = document.querySelector('#message');
+        msg.innerText = message;
+
+        if(type === 'send' && target === 'config') {
+            const config = document.getElementById('config');
+            config.contentWindow.postMessage(words, 'http://localhost:4233');
+        }
+    })
+</script>
+</html>
